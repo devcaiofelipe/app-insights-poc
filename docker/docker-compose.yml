@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  insights-service:
+    container_name: insights-service
+    image: node:18.0.0-alpine3.14
+    working_dir: /src/app
+    ports:
+      - 3000:3000
+    volumes:
+      - ../:/src/app
+    command: sh -c "$CMD"
+  insights-database:
+    container_name: insights-database
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: insights
+    ports:
+      - "27017:27017"
